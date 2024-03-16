@@ -170,8 +170,8 @@ export default function App() {
 							<div className="flex flex-col gap-4">
 								<p className="mb-4">
 									Jender is a webapp which randomly serves up odd responses to
-									questions about gender. It's even funnier when the results are
-									used to answer common everyday questions! The source code is
+									questions about gender.<br />It's even funnier when the results are
+									used to answer common everyday questions!<br />The source code is
 									available on{' '}
 									<Link
 										href="https://github.com/akpi816218/jender"
