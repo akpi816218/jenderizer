@@ -110,7 +110,7 @@ export default function App() {
 							onPress={() => window.location.reload()}
 							size="lg"
 							color="success"
-							className="text-background"
+							className={`text-background ${rand ? '' : 'hidden'}`}
 							endContent={<FontAwesomeIcon icon={faDice} />}
 						>
 							Roll again
