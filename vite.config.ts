@@ -12,9 +12,9 @@ export default defineConfig({
 		react(),
 		VitePWA({
 			manifest: {
-				id: 'app.vercel.jender',
-				name: 'Jender',
-				short_name: 'Jender',
+				id: 'app.vercel.jenderizer',
+				name: 'Jenderizer',
+				short_name: 'Jenderizer',
 				start_url: '/',
 				display: 'standalone',
 				display_override: ['window-controls-overlay'],
@@ -55,7 +55,6 @@ export default defineConfig({
 		})
 	],
 	base: '/',
-	root: 'src',
 	appType: 'spa',
 	build: {
 		outDir: '../dist',
