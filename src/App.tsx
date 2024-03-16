@@ -40,14 +40,14 @@ export default function App() {
 
 	return (
 		<RootLayout>
-			<main className="flex flex-col items-stretch justify-normal min-h-screen m-0 px-12 py-16 md:p-16 lg:p-32">
+			<main className="flex flex-col items-stretch justify-normal min-h-screen m-0 px-12 py-16 md:p-16 lg:p-32 text-center font-mono tracking-widest">
 				<Toaster position="top-right" />
+				<h1 className="text-center m-4 font-semibold sm:text-2xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple to-purple-light">
+					Jenderize!
+				</h1>
 				<div
-					className={`${!name ? 'flex' : 'hidden'} flex-col justify-stretch items-center gap-4 md:gap-8 dark:text-foreground text-center text-xl font-mono tracking-widest`}
+					className={`${!name ? 'flex' : 'hidden'} flex-col justify-stretch items-center gap-4 md:gap-8 text-xl`}
 				>
-					<h1 className="font-semibold sm:text-2xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple to-purple-light">
-						Jenderize!
-					</h1>
 					<form
 						className={`flex flex-col justify-center items-center gap-8 w-full`}
 						onSubmit={submitForm}
@@ -88,9 +88,9 @@ export default function App() {
 				<div
 					className={`${name ? 'flex' : 'hidden'} flex-col justify-center items-center gap-2 md:gap-4 dark:text-foreground text-center text-xl font-mono tracking-widest`}
 				>
-					<h1 className="font-semibold text-2xl md:text-4xl overflow-x-scroll max-w-[calc(100vw-6rem)]">
+					<h2 className="font-semibold text-2xl md:text-4xl overflow-x-scroll max-w-[calc(100vw-6rem)]">
 						{rand ? 'Random' : `${name!}'s`} gender:
-					</h1>
+					</h2>
 					<p className="m-8 text-xl md:text-2xl font-semibold rounded-2xl py-2 px-4 bg-neutral-500">{`${GetResponse(name ?? '')}`}</p>
 					<Divider className="my-4 mx-2 h-1" />
 					<div className="flex flex-row justify-center items-center gap-4 md:gap-8">
@@ -128,11 +128,19 @@ export default function App() {
 						Go back
 					</Link>
 				</div>
-				<Divider className="my-8 mx-2 h-1" />
-				<p className="text-xl my-2 text-center">
+				<Divider className="my-12 mx-2 h-1" />
+				<p className="text-xl my-2 text-center leading-loose">
 					Developed by{' '}
 					<Link href="https://akpi.is-a.dev/" size="lg" underline="always">
 						Akhil Pillai
+					</Link>
+					.<br />
+					Inspired by{' '}
+					<Link
+						isExternal
+						href="https://definitelytransrpgideas.tumblr.com/post/162501281810/are-you-a-boy-or-a-girl-rolls-d20-and-checks"
+					>
+						this Tumblr post
 					</Link>
 					.
 				</p>
