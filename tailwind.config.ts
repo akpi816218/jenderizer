@@ -20,7 +20,9 @@ export const config: Config = {
 				yellow: '#FEF32A',
 				white: '#FEFEFE',
 				purple: '#9D57D2',
-				black: '#010101'
+				'purple-light': '#c49ae4',
+				black: '#010101',
+				green: '#A3E557'
 			},
 			width: {
 				'25c': '25em',
@@ -40,7 +42,21 @@ export const config: Config = {
 	},
 	plugins: [
 		nextui({
-			defaultTheme: 'light'
+			defaultTheme: 'dark',
+			defaultExtendTheme: 'dark',
+			themes: {
+				dark: {
+					colors: {
+						background: '#010101',
+						foreground: '#FEFEFE',
+						secondary: '#9D57D2',
+						success: '#A3E557',
+						primary: '#cbc101'
+					},
+					layout: {},
+					extend: 'dark'
+				}
+			}
 		})
 	]
 };

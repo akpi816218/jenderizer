@@ -18,88 +18,134 @@ import {
 	TableRow,
 	useDisclosure
 } from '@nextui-org/react';
-import DynamicWrapper from './_components/DynamicWrapper';
-import ScrollShadowComponent from './_components/ScrollShadowComponent';
 import { GetResponse } from '../lib';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons/faCopy';
 import toast, { Toaster } from 'react-hot-toast';
+import { faDice } from '@fortawesome/free-solid-svg-icons/faDice';
 
 export default function App() {
 	const [value, setValue] = useState('');
-	const [error, setError] = useState('');
 	const { isOpen, onOpen: open, onOpenChange: openChange } = useDisclosure();
 
 	const params = new URLSearchParams(window.location.search);
-	const name = params.get('name');
+	if (params.has('random') && params.has('name')) {
+		params.delete('random');
+		window.location.search = params.toString();
+	}
+	const rand = params.has('random');
+	const name = rand
+		? Array(window.crypto.getRandomValues(new Uint32Array([0]))).join('')
+		: params.get('name');
 
 	return (
 		<RootLayout>
-			<main className="grid items-stretch justify-stretch min-h-screen m-0 px-12 py-16 md:p-16 lg:p-32 border-2 border-red-500">
+			<main className="flex flex-col items-stretch justify-normal min-h-screen m-0 px-12 py-16 md:p-16 lg:p-32">
 				<Toaster position="top-right" />
-				<DynamicWrapper smallWrapper={ScrollShadowComponent}>
-					<div
-						className={`${!name ? 'flex' : 'hidden'} flex-col justify-center items-center gap-4 md:gap-8 dark:text-white text-center text-xl font-mono tracking-widest`}
+				<div
+					className={`${!name ? 'flex' : 'hidden'} flex-col justify-stretch items-center gap-4 md:gap-8 dark:text-foreground text-center text-xl font-mono tracking-widest`}
+				>
+					<h1 className="font-semibold sm:text-2xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple to-purple-light">
+						Jenderize!
+					</h1>
+					<form
+						className={`flex flex-col justify-center items-center gap-8 w-full`}
+						onSubmit={submitForm}
 					>
-						<h1 className="font-semibold sm:text-2xl md:text-4xl">
-							Genderize!
-						</h1>
-						<form
-							className={`flex flex-col justify-center items-center gap-8 w-full`}
-							onSubmit={submitForm}
-						>
-							<Input
-								isRequired
-								isClearable
-								variant="underlined"
-								label="Name"
-								size="lg"
-								placeholder="First [Middle] Last"
-								value={value}
-								onValueChange={setValue}
-							/>
-							<div className="flex flex-row items-center justify-center gap-4 md:gap-8">
-								<Button onPress={submit} size="lg" color="success">
-									Solve
-								</Button>
-							</div>
-							<p className="text-red-500 text-base">{error}</p>
-						</form>
-					</div>
-					<div
-						className={`${name ? 'flex' : 'hidden'} flex-col justify-center items-center gap-4 md:gap-8 dark:text-white text-center text-xl font-mono tracking-widest`}
-					>
-						<h1 className="font-semibold text-2xl md:text-4xl">
-							{`${name!}'s gender:`}
-						</h1>
-						<p className="text-xl md:text-2xl font-semibold rounded-2xl py-2 px-4 bg-neutral-500">{`"${GetResponse(name ?? '')}"`}</p>
-						<Divider className="my-4 mx-2 h-1" />
-						<div className="flex flex-row justify-center items-middle">
+						<Input
+							isRequired
+							isClearable
+							variant="underlined"
+							label="Name"
+							size="lg"
+							value={value}
+							onValueChange={setValue}
+							className="max-w-xl"
+						/>
+						<div className="flex flex-row items-center justify-center gap-4 md:gap-8">
 							<Button
-								onPress={() => {
-									window.navigator.clipboard.writeText(GetResponse(name!));
-									toast.success('Copied to clipboard!');
-								}}
+								onPress={submit}
 								size="lg"
-								color="primary"
-								endContent={<FontAwesomeIcon icon={faCopy} />}
+								color="success"
+								className="text-background"
+								type="submit"
 							>
-								Copy
+								Roll
+							</Button>
+							OR
+							<Button
+								onPress={random}
+								size="lg"
+								color="secondary"
+								className="text-background"
+								endContent={<FontAwesomeIcon icon={faDice} />}
+							>
+								Random
 							</Button>
 						</div>
-						<Link
-							href={new URL(
-								window.location.pathname,
-								window.location.origin
-							).toString()}
-							isBlock
-							color="secondary"
-							underline="always"
+					</form>
+				</div>
+				<div
+					className={`${name ? 'flex' : 'hidden'} flex-col justify-center items-center gap-2 md:gap-4 dark:text-foreground text-center text-xl font-mono tracking-widest`}
+				>
+					<h1 className="font-semibold text-2xl md:text-4xl overflow-x-scroll max-w-[calc(100vw-6rem)]">
+						{rand ? 'Random' : `${name!}'s`} gender:
+					</h1>
+					<p className="m-8 text-xl md:text-2xl font-semibold rounded-2xl py-2 px-4 bg-neutral-500">{`${GetResponse(name ?? '')}`}</p>
+					<Divider className="my-4 mx-2 h-1" />
+					<div className="flex flex-row justify-center items-center gap-4 md:gap-8">
+						<Button
+							onPress={() => {
+								window.navigator.clipboard.writeText(GetResponse(name!));
+								toast.success('Copied to clipboard!');
+							}}
+							size="lg"
+							color="primary"
+							className="text-background"
+							endContent={<FontAwesomeIcon icon={faCopy} />}
 						>
-							Go back
-						</Link>
+							Copy
+						</Button>
+						<Button
+							onPress={() => window.location.reload()}
+							size="lg"
+							color="success"
+							className="text-background"
+							endContent={<FontAwesomeIcon icon={faDice} />}
+						>
+							Roll again
+						</Button>
 					</div>
-				</DynamicWrapper>
+					<Link
+						href={new URL(
+							window.location.pathname,
+							window.location.origin
+						).toString()}
+						isBlock
+						color="primary"
+						underline="always"
+					>
+						Go back
+					</Link>
+				</div>
+				<Divider className="my-8 mx-2 h-1" />
+				<p className="text-xl my-2 text-center">
+					Developed by{' '}
+					<Link href="https://akpi.is-a.dev/" size="lg" underline="always">
+						Akhil Pillai
+					</Link>
+					.
+				</p>
+				<div className="flex flex-row justify-center items-middle my-2 md:my-4">
+					<Button
+						onPress={open}
+						size="lg"
+						color="primary"
+						className="text-background font-semibold"
+					>
+						Credits
+					</Button>
+				</div>
 			</main>
 			<Modal
 				title="Credits"
@@ -249,14 +295,18 @@ export default function App() {
 
 	function submit() {
 		if (value.length === 0) {
-			setError('Name is required');
+			toast.error('Ya need a name, mate!');
 			return;
 		}
-		setError('');
 		window.location.search = new URLSearchParams({ name: value }).toString();
 	}
+
 	function submitForm(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		submit();
+	}
+
+	function random() {
+		window.location.search = 'random';
 	}
 }

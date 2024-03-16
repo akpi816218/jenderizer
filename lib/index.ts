@@ -5,6 +5,10 @@ export function NameToInt(name: string): number {
 	);
 }
 
+export function GetResponse(name: string): string {
+	return Responses[NameToInt(name)];
+}
+
 export const Responses: string[] = [
 	'Yes',
 	'No',
@@ -40,9 +44,13 @@ export const Responses: string[] = [
 	'*screams in Morse code*',
 	'*screams in Wingdings*',
 	'*screams in emoji*',
-	'*screams in Elvish*'
+	'*screams in Elvish*',
+	'Chicken butt',
+	'Only on the third Tuesday of the month',
+	'Only when the stars align',
+	"Yesn't",
+	'Tralse',
+	'No, but I have a coupon for that',
+	'No, but I can refer you to someone',
+	'What is this strange thing you speak of'
 ];
-
-export function GetResponse(name: string): string {
-	return Responses[NameToInt(name)];
-}
