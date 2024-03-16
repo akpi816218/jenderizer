@@ -55,6 +55,7 @@ export default defineConfig({
 		})
 	],
 	base: '/',
+	root: 'src',
 	appType: 'spa',
 	build: {
 		outDir: '../dist',
