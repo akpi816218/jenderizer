@@ -135,12 +135,12 @@ export default function App() {
 						Akhil Pillai
 					</Link>
 					.<br />
-					Inspired by{' '}
+					This project was inspired by{' '}
 					<Link
 						isExternal
 						href="https://definitelytransrpgideas.tumblr.com/post/162501281810/are-you-a-boy-or-a-girl-rolls-d20-and-checks"
 					>
-						this Tumblr post
+						this great Tumblr post
 					</Link>
 					.
 				</p>
@@ -194,6 +194,14 @@ export default function App() {
 										Akhil Pillai
 									</Link>
 									.
+<br /><br />This project was inspired by{' '}
+					<Link
+						isExternal
+						href="https://definitelytransrpgideas.tumblr.com/post/162501281810/are-you-a-boy-or-a-girl-rolls-d20-and-checks"
+					>
+						this great Tumblr post
+					</Link>
+					.
 								</p>
 								<h2 className="text-center text-lg font-semibold font-press-start text-indigo-600 underline underline-offset-2">
 									Open Source Tools and Libraries
