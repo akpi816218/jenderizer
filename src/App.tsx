@@ -164,7 +164,7 @@ export default function App() {
 				size="2xl"
 			>
 				<ModalContent>
-					<>
+					{close => <>
 						<ModalHeader>Credits</ModalHeader>
 						<ModalBody>
 							<div className="flex flex-col gap-4">
@@ -303,7 +303,7 @@ export default function App() {
 								Close
 							</Button>
 						</ModalFooter>
-					</>
+					</> }
 				</ModalContent>
 			</Modal>
 		</RootLayout>
