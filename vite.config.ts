@@ -15,7 +15,7 @@ export default defineConfig({
 				id: 'app.is-an.jenderizer',
 				name: 'Jenderizer',
 				short_name: 'Jenderizer',
-				start_url: '/',
+				start_url: '/jenderizer/',
 				display: 'standalone',
 				display_override: ['window-controls-overlay'],
 				background_color: '#010101',
@@ -54,7 +54,7 @@ export default defineConfig({
 			}
 		})
 	],
-	base: '/',
+	base: '/jenderizer/',
 	root: 'src',
 	appType: 'spa',
 	build: {
