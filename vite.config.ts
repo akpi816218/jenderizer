@@ -18,10 +18,10 @@ export default defineConfig({
 				start_url: '/',
 				display: 'standalone',
 				display_override: ['window-controls-overlay'],
-				background_color: '#9D57D2',
+				background_color: '#010101',
 				lang: 'en',
 				scope: '/',
-				description: 'Gender app',
+				description: 'Random gender die rolls!',
 				screenshots: [
 					{
 						src: '/screenshot-narrow-light.png',
@@ -48,17 +48,23 @@ export default defineConfig({
 						type: 'image/png'
 					}
 				],
-				theme_color: '#272727',
+				theme_color: '#9D57D2',
 				orientation: 'natural',
 				categories: ['entertainment']
 			}
 		})
 	],
 	base: '/',
+	root: 'src',
 	appType: 'spa',
 	build: {
 		outDir: '../dist',
-		emptyOutDir: true
+		emptyOutDir: true,
+		rollupOptions: {
+			input: {
+				main: resolve(__dirname, 'src', 'index.html')
+			}
+		}
 	},
 	resolve: {
 		alias: {

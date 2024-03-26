@@ -6,7 +6,6 @@ import { createServer } from 'vite';
 const vite = await (await createServer()).listen();
 
 const browser = await puppeteer.launch({
-	headless: 'new',
 	defaultViewport: {
 		width: 412,
 		height: 915,
