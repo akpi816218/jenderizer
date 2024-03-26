@@ -12,7 +12,7 @@ export default defineConfig({
 		react(),
 		VitePWA({
 			manifest: {
-				id: 'app.vercel.jenderizer',
+				id: 'app.is-an.jenderizer',
 				name: 'Jenderizer',
 				short_name: 'Jenderizer',
 				start_url: '/',
