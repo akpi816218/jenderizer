@@ -110,7 +110,7 @@ export default function App() {
 							onPress={() => window.location.reload()}
 							size="lg"
 							color="success"
-							className="text-background"
+							className={`text-background ${rand ? '' : 'hidden'}`}
 							endContent={<FontAwesomeIcon icon={faDice} />}
 						>
 							Roll again
@@ -135,12 +135,12 @@ export default function App() {
 						Akhil Pillai
 					</Link>
 					.<br />
-					Inspired by{' '}
+					This project was inspired by{' '}
 					<Link
 						isExternal
 						href="https://definitelytransrpgideas.tumblr.com/post/162501281810/are-you-a-boy-or-a-girl-rolls-d20-and-checks"
 					>
-						this Tumblr post
+						this great Tumblr post
 					</Link>
 					.
 				</p>
@@ -164,14 +164,14 @@ export default function App() {
 				size="2xl"
 			>
 				<ModalContent>
-					<>
+					{close => <>
 						<ModalHeader>Credits</ModalHeader>
 						<ModalBody>
 							<div className="flex flex-col gap-4">
 								<p className="mb-4">
 									Jender is a webapp which randomly serves up odd responses to
-									questions about gender. It's even funnier when the results are
-									used to answer common everyday questions! The source code is
+									questions about gender.<br /><br />It's even funnier when the results are
+									used to answer common everyday questions!<br /><br />The source code is
 									available on{' '}
 									<Link
 										href="https://github.com/akpi816218/jender"
@@ -194,6 +194,14 @@ export default function App() {
 										Akhil Pillai
 									</Link>
 									.
+<br /><br />This project was inspired by{' '}
+					<Link
+						isExternal
+						href="https://definitelytransrpgideas.tumblr.com/post/162501281810/are-you-a-boy-or-a-girl-rolls-d20-and-checks"
+					>
+						this great Tumblr post
+					</Link>
+					.
 								</p>
 								<h2 className="text-center text-lg font-semibold font-press-start text-indigo-600 underline underline-offset-2">
 									Open Source Tools and Libraries
@@ -295,7 +303,7 @@ export default function App() {
 								Close
 							</Button>
 						</ModalFooter>
-					</>
+					</> }
 				</ModalContent>
 			</Modal>
 		</RootLayout>
